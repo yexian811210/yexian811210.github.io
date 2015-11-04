@@ -128,6 +128,26 @@ $("#submit").click( function() {
 
         div_count++;
 
+        for(var b=0;b<used_arr.length;b=b+2){
+            var tem_value = used_arr[b];
+            for(var a =b+2 ;a<used_arr.length;a=a+2) {
+                
+                if(used_arr[a]==tem_value) {
+                delete used_arr[a];
+                delete used_arr[a+1];
+            };
+          };
+      }
+       var length_before_change = used_arr.length;
+       for(var p=0;p<length_before_change;p++) {
+         if(used_arr[p]!= undefined) {
+            used_arr.push(used_arr[p]);
+         }
+       }
+       used_arr.splice(0,length_before_change); //delete duplicates in used_arr ->show unique accord in step 3
+
+       
+
         localStorage.setItem('this', JSON.stringify(used_arr));
 
         used_frag_arr.push(sub);
