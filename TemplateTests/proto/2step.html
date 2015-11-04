@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>proto</title>
+
+        <link href="css/scenttrunk-layout.css" rel="stylesheet">
+        <link href="css/drag-drop.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
+         <style type="text/css">
+         div.step_two_container h1, h2, h3, h4, h5, p, a {
+            font-family: 'Montserrat',sans-serif;
+         }
+         div.step_two_container #call-to-action-button a, div.step_two_container .call-to-action-button a {
+            font-family: 'Montserrat',sans-serif;
+            border: 0 !important;
+            background-color: #990100 !important;
+            border-radius: 20px;
+            color: white;
+            padding: 8px 20px 8px 20px;
+            transition: background-color .25s ease-in-out;
+         }
+         div.step_two_container .call-to-action-button a {
+            border-top-left-radius: 0px !important;
+            border-bottom-left-radius: 0px !important;         
+        }
+         div.step_two_container #call-to-action-button a:hover, div.step_two_container .call-to-action-button a:hover {
+            background-color: #b90504 !important;
+            font-family: 'Montserrat',sans-serif;
+         }
+         div.dis_section_right .input-group #tags {
+            padding: 6px;
+         }
+         div.step_two_container h2 {
+            font-size: 30px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit;
+         }
+         div.step_two_container h2 small {
+            font-size: 65%;
+            font-weight: 400px;
+            line-height:1;
+            color: #777;
+         }
+         div.step_two_container a {
+            text-decoration: none;
+         }
+        div.step_two_container {
+            width: 1170px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .survey_two_header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 2px solid #7D8C92;
+        }
+        .survey_two_header .display_row {
+            margin-left: -15px;
+            margin-right: -15px;
+            /*display: table;
+            content: " ";*/
+        }
+        ul.survey_two_niv {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+            margin-top: 0;
+        }
+        .survey_two_niv li {
+            float: left;
+            position: relative;
+            display: block;
+        }
+        .survey_two_niv li.active a {
+            color: #fff;
+            background-color: #337ab7;
+        }
+        .survey_two_niv li a {
+            border-radius: 4px;
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+       .dis_section_right {
+            width: 25%;
+            margin: auto;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+       }
+       .dis_section_right .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+       }
+       .input-group .input-group-btn {
+        position: relative;
+        white-space: nowrap;
+        width: 1%;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: table-cell;
+       }
+       .input-group .input-group-btn .form-control {
+        border-radius: 0;
+        display: table-cell;
+        position: relative;
+        z-index: 2;
+        float: left;
+        width: 100%;
+        margin-bottom: 0;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        font-family: inherit;
+        margin: 0;
+        font: inherit;
+       }
+        div.love_hate_section {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        div.love_section, div.hate_section {
+            width: 47%;
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+
+        }
+        div.love_section {
+            border-right: 2px solid #7D8C92;
+        }
+        div.single_note_container {
+            margin-top: 20px;
+            width: 28%;
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .single_note_element {
+            display: block;
+            padding: 4px;
+            margin-bottom: 20px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border .2s ease-in-out;
+        }
+        .single_note_element .caption {
+            padding: 2px;
+            color: #333;
+            text-align: center;
+        }
+        div.caption h3 {
+            margin: 0px;
+        }
+        .single_note_element a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        .single_note_element img {
+            width: 100%;
+        }
+        div#show_input_accord div.full_width {
+            width: 60% !important;
+        }
+        div#loha_button_wrapper {
+            float: left;
+        }
+        div#loha_button_wrapper .love_button, div#loha_button_wrapper .hate_button {
+            float: left;
+            margin-bottom: 10px;
+        }
+        div#loha_button_wrapper .love_button {
+            margin-right: 15px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="step_two_container">
+
+            <div class="survey_two_header">
+                <div class="display_row">
+
+                    <div class="dis_section_right" style="margin-top: 25px; margin-bottom: 10px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
+                            <span class="call-to-action-button" id="submit"><a href="#">Search</a></span>
+                        </div><!-- /input-group -->
+                        <div id="show_input_accord">
+                        </div>
+                    </div>
+                    <span id ="call-to-action-button" style="float: right;margin-top: 0px !important;margin-bottom: 10px;"><a href="#">Next Step</a></span>
+                 <div style="clear:both;"></div>
+                </div>
+            </div>
+
+            <div class="love_hate_section">
+
+                <div class="love_section">
+                        <h1> <small> I Love These! </small> </h1>
+                </div>
+                <div class="hate_section">
+                        <h1> <small> I Hate These! </small> </h1>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+
+            <div class="love_hate_section">
+                <div class="love_section c" id="defaultNotes" style="max-height: 500px; min-height: 500px;">
+                </div>
+
+                <div class="hate_section c" id="hateNotes" style="max-height: 500px; min-height: 500px;">
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="js/drag-drop.js"></script>
+        <script src="js/secondary.js"></script>
+
+    </body>
+</html>

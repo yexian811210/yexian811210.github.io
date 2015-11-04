@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>proto</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/drag.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
+
+    </head>
+    <body>
+        <div class="container">
+
+                <div class="row">
+                    <div class="col-xs-8 col-md-5">
+                        <h1> <small>Choose a Fragrance you Wear/Love!</small> </h1>
+                    </div>
+
+                    <div class="col-xs-8 col-md-3" style="margin-top: 25px; margin-bottom: 10px;">
+                        <div class="input-group">
+                            <span class="input-group-btn" id="submit">
+                                <button class="btn btn-default" type="button">Search For</button>
+                            </span>
+                            <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
+                        </div><!-- /input-group -->
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8 col-md-2">
+                        <h1> <small> You Love: </small> </h1>
+                    </div>
+
+                    <div id="love1" class="col-xs-4 col-md-2">
+                    </div>
+
+                    <div id="love2" class="col-xs-4 col-md-2">
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-8 col-md-5 ">
+                        <h1> <small> That has: </small> </h1>
+                    </div>
+                </div>
+
+                <div class="row" id="notes">
+                </div>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+        <script>
+
+
+        oriental_obj = [
+        {name: 'Elemi',
+        source_link:'https://scenttrunk.com/wp-content/uploads/2015/06/Elemi.jpg',
+        description: 'Elemi is a tree native to Philippines. The tree produces a resin, which is a pale yellow substance from which aromatic elemi oil is steam distilled. The same resin is also used as a herbal remedy from bronchitis, cough, mature skin, scars and wounds',
+        category: 'Woody Oriental'
+        },
+        {name: 'Allspice',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/AllSpice.jpg',
+        description: 'Allspice, also known as Jamaica pepper, myrtle pepper, pimenta or newspice, is actually the tiny dried fruit of the Pimenta dioica plant. A native of the Caribbean, Mexico and Central America, the plant is now widely cultivated in warm climates throughout the world and is indispensable in Caribbean jerk seasoning as well as Latin American and Middle Eastern cuisine.',
+        category: 'Oriental'
+        },
+        {name: 'Animalic',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/animalic.jpeg',
+        description: 'Traditionally animal harvested ingredients included fecal and perineum region gland essences. An animalic scent should be warm, rich, creating an aura of lived-in things, but overall giving off sexiness',
+        category: 'Oriental'
+        },
+        {name: 'Castoreum',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/castoreum.jpeg',
+        description: 'Castoreum in perfumery refers to the characteristic resinoid extract largely used as an animalistic note. The scent of castoreum is wild and bodily, lustful and passionate, bestowing the one who wears it a delicate aura of sensuality.',
+        category: 'Oriental'
+        },
+        {name: 'Cinnamon',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/cinnamon.jpeg',
+        description: 'Cinnamon is a spice obtained from the inner bark of the cinnamon tree. It is scientific name stems from Hebraic and Arabic term amomon, which means "fragrant spice plant". The spice is used in both sweet and savory foods, and it has bin prized for centuries not only for its unique flavor but also for aphrodisiac properties.',
+        category: 'Oriental'
+        },
+        {name: 'Cloves',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/cloves.jpeg',
+        description: 'Cloves are dried flower buds of a tree in the family Myrtaceae. Cloves are prized as spices because of their warm, sweet and aromatic taste.',
+        category: 'Oriental'
+        },
+        {name: 'Cumin',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/cumin.jpeg',
+        description: 'A spice with an especially pungent, bitter-sour note that can resemble sweat. Polarizing, it can highlight a fragrance creation like no other and is nowadays often used to render an intimate, animalic note in abscence of animalics. Famously overdosed in Kingdom by Alexander McQueen.',
+        category: 'Oriental'
+        },
+        {name: 'Fenugreek',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/fenugreek.jpeg',
+        description: 'The essence from the yellowish-golden seeds of Trigonella Foenum Graecum are used as a spice. It renders a maple-syrup note in fragrance, common also to helichrysum/immortelle blossom. The note is recognizable (via immortelle essence) in Sables by A.Goutal and (via fenugreek spice) in Santal Blush by Tom Ford.',
+        category: 'Oriental'
+        },
+        {name: 'Ginger',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/ginger.jpeg',
+        description: 'A very common note in fragrance, most often in the context of a "gingerbread accord" (first recognizably used in Bois des Iles by Chanel and famously in Tea for Two by LArtisan Parfumeur and Brit Red). It is spicy, sharp, bracing yet light, and pairs well with citrus notes, vanilla and woods.',
+        category: 'Oriental'
+        },
+        {name: 'Masala_chai',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/masala_chai.jpeg',
+        description: 'Traditionally, Masala Chai or mixed spice tea is a flavored tea beverage with a mixture of aromatic spices/herbs and Indian black tea. Sometimes the term Masala Chai is used to indicate spiced milk tea, as distinct from other types of tea.',
+        category: 'Oriental'
+        },
+        {name: 'Pepper',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/pepper.jpeg',
+        description: 'Hot and bracing note, short-lived and earthy spice, rendered through steam distillation of the berries of the piper negrum bush, which is very popular as a bright accent top note in fragrances.',
+        category: 'Oriental'
+        },
+        {name: 'Saffron',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/saffron.jpeg',
+        description: 'It is an aromatic and very expensive spice by weight, is known as "King of spices" and "red gold" and utilised for cooking, staining, medicine, cosmetics and some other purposes.',
+        category: 'Oriental'
+        },
+        {name: 'Spices',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/species.jpeg',
+        description: 'Fragrances belonging in the Oriental family of scents often comprise spicy notes that come from exotic parts of the world, usually the Middle and Far East: cinnamon, clove, vanilla, pepper, mace, nutmeg etc.',
+        category: 'Oriental'
+        },
+        {name: 'Tonka-bean',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/tonka-bean.jpeg',
+        description: 'Tonka Bean is one of the most common ingredients in perfumery. These black, wrinkled seeds of the Dipteryx odorata (often mentioned as "cumaru" or "kumaru") are also found in numerous other products such as soaps or tobacco, where they are used to improve aroma.',
+        category: 'Oriental'
+        },
+        {name: 'Turmeric',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Turmeric.jpeg',
+        description: 'Turmeric - best known to the world of food as a spice that gives food warm and distinct flavour with warm, herbaceous and earthy aroma, however, it tastes bitter and somewhat slightly hot peppery.',
+        category: 'Oriental'
+        },
+        {name: 'Vanilla',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/vanilla.jpeg',
+        description: 'An ever popular fragrance note, known mostly through its synthetic variant vanillin, which is sweet, cozy, comforting, with a pleasing cookie-baking feeling to it.',
+        category: 'Oriental'
+        },
+        {name: 'Whisky',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/whisky.jpeg',
+        description: 'Very complex note that comprises facets of sweet hay, oak barrels, chocolate, dried fruits, honey and mild spices. Sophisticated, warm and deep, usual in orientals, woodies and some chypres.',
+        category: 'Oriental'
+        },
+        {name: 'Juniper',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/juniper.jpeg',
+        description: 'Juniper is coniferous plant in the genus Juniperus of the cypress family. Junipers vary in size, ranging from small shrubs to tall trees. The fruit grows seed cones with fleshy and fruit-like "berries" that can be red-brown or orange in color, even though they are most typically blue. The berries are very aromatic and they are typically used as a spice. Juniper berries are used as flavoring in gin.',
+        category: 'Woody Oriental'
+        },
+        {name: 'Myrrh',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/myrrh.jpeg',
+        description: 'The myrrh note is best used in oriental fragrances and complements well, with a little darkness, the luminous and cheerful characteristics of the oriental vibe.',
+        category: 'Woody Oriental'
+        },
+        {name: 'Nagarmotha',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Nagarmotha.jpeg',
+        description: 'Nagarmotha is a relative to papyrus. Its smell is woody with earthy and spicy nuances.',
+        category: 'Woody Oriental'
+        },
+        {name: 'Opoponax',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Opoponax.jpeg',
+        description: 'It is a cousin of the healing Myrrh-Commiphora Myrrha with a warm-balsamic and sweet, honey-like aroma. It is a natural oleo-gum-resin like myrrh and frankincense. The color of its resin is brown; however, good quality crude botanical resin is dark red. Opoponax has been a component of incense and perfumes since Biblical times.',
+        category: 'Woody Oriental'
+        },
+        {name: 'Resins',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Resins.jpeg',
+        description: 'Resins are derived from wounds in trees and are produced commercially by cutting an incision in a tree and collecting the tears or resin that weeps out from the bark. ',
+        category: 'Woody Oriental'
+        },
+        {name: 'Suede',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Suede.jpeg',
+        description: 'In perfumery the suede scent is used for purpose of introducing velvety soft, musky, woody and leathery nuances in the composition. It is an imaginary accord created by perfumers and produced as a synthetic ingredient.',
+        category: 'Woody Oriental'
+        },
+        {name: 'Laurels',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Laurels.jpeg',
+        description: 'They are an evergreen shrub which can be found in warm, humid climates.',
+        category: 'Woody Oriental'
+        }
+        ];
+        fresh_obj = [
+        {name: 'Bergamot',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Bergamot.jpg',
+        description: 'Citrusy, bitter and sour, elegant light note, complex with nuances of fruit and aromatic elements',
+        category: 'Citrus'
+        },
+        {name: 'Basil',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Basil.jpg',
+        description: 'Basil is a member of the mint family, best known around the world for its use in Italian cuisine, though it is commonly used in many Asian cuisines as well.Lively peppery spicy green note with fresh facets',
+        category: 'Green'
+        },
+        {name: 'Black-currant',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Black-Currant.jpg',
+        description: 'Tangy fruit with a very characteristic ammoniac "cat piss" note, commonly known as bourgeons de cassis in French industry speak',
+        category: 'Fruity'
+        },
+        {name: 'Marine',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Marine.jpg',
+        description: 'Marine fragrances, graced with sensual and salty note of sea water, are most appropriate for hot summer days. Sea note is used in various perfumes to create a fresh composition and lend a distinctive sea water aroma that refreshes our mind and our senses.',
+        category: 'Water'
+        },
+        {name: 'Herbs',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Herbs.jpg',
+        description: 'They are the leafy green component of plants.',
+        category: 'Aromatic'
+        },
+        {name: 'Warm-spicy',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Warm-spicy.jpeg',
+        description:'They are scent that comes from the derivatives of hot peppers and spices.',
+        category: 'Aromatic'
+        },
+        {name: 'Whipped-cream',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Whipped-cream.jpeg',
+        description: 'Thick, lactonic note usually recreated through organic chemistry (via lactones), but also contributed to naturally through the magic of floral absolutes of certain flowers (jasmine and white florals)',
+        category: 'Aromatic'
+        },
+        {name: 'Bitter-orange',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Bitter-orange.jpeg',
+        description: 'Bitter Orange, also known as Seville orange (Bigarade orange), is one of the many types of oranges, and one the most important citruses used in modern perfume industry. A clean and fresh composition designed to accentuate beauty of simplicity.',
+        category: 'Citrus'
+        },
+        {name: 'Clementine',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/clementine.jpeg',
+        description: 'Variety of mandarin orange without seeds, known as "Christmas mandarin", sweet, juicy, very succulent.',
+        category: 'Citrus'
+        },
+        {name: 'Lemon',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Lemon.jpeg',
+        description: 'Astringent, sour, sweet undertone, aromatic nuance, bright, cheerful & vibrant.',
+        category: 'Citrus'
+        },
+        {name: 'Blackberry',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Blackberry.jpeg',
+        description: 'Berries fruits with a rich, tannic feel, slightly sour and honeyed smell',
+        category: 'Fruity'
+        },
+        {name: 'Dark-chocolate',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Dark-chocolate.jpeg',
+        description: 'A note deriving from patchouli essence, deep and not particularly sweet, with a dusty feel and a bitterish edge',
+        category: 'Fruity'
+        },
+        {name: 'Gin',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/gin.jpeg',
+        description: 'The classic juniper berry note which appears in gin liquor, bracing, mind-clearing, exhilarating, useful in woody, fougere and chypre compositions to give a piquant start.',
+        category: 'Fruity'
+        },
+        {name: 'Mango',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/mango.jpeg',
+        description: 'Tropical fruity note, extremely succulent and pulpy, with peach-like and plum-like facets.',
+        category: 'Fruity'
+        },
+        {name: 'Melon',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Melon.jpeg',
+        description: 'Fresh, very common fruity note, usually attributed to Calone, a popular lab synthetic popularized in the 1990s.',
+        category: 'Fruity'
+        },
+        {name: 'Pineapple',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Pineapple.jpeg',
+        description: 'Juicy, nectarous, slightly sour and very fresh fruit note that evokes the tropical pineapple fruit.',
+        category: 'Fruity'
+        },
+        {name: 'Chamomile',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Chamomile.jpeg',
+        description: 'German chamomile has a sweet smoky scent that somewhat reminds of apples. Roman chamomile is commonly used in perfumery, and it goes very well with fruity and floral notes of jasmine, bergamot and neroli. Wild chamomile goes well with woody notes of cypress, citrusy and musk scents; it is very fresh and indistinctively herbal, with sugary-fruity twist.',
+        category: 'Green'
+        },
+        {name: 'Fig',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Fig.jpeg',
+        description: 'Complex mix of bitter green and milky sweet facets with ripe fruity notes, often used in woody compositions or in tandem with a hint of coconut and greenery to give a Mediterranean feel to a perfume.',
+        category: 'Green'
+        },
+        {name: 'Jasmine',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Jasmine.jpeg',
+        description: 'Sweet narcotic scent that is floral but with an animalic background like living flesh, can be piercingly sweet and carry scent a mile off; can present "indolic" facets or be greener/airier when synthesized in the lab',
+        category: 'Green'
+        },
+        {name: 'Labdanum',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Labdanum.jpeg',
+        description: 'Deep, powerful, leathery and ambery note derived from the rock rose and one of the default ingredients in chypre fragrances as well as the amber "acoord" in oriental fragrances.',
+        category: 'Green'
+        },
+        {name: 'Mint',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Mint.jpeg',
+        description: 'Refreshing and cooling green note with peppery aspects, the quintessential scent of chewing gum and toothpaste in the US',
+        category: 'Green'
+        },
+        {name: 'Rhubarb',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Rhubarb.jpeg',
+        description: 'Very tart and refreshing flavor, sour with strawberry facets, very popular in desserts in the US where it couples with cake, tart or crust. It pairs very well with eastern spices (cinnamon, nutmeg, ginger and saffron)',
+        category: 'Green'
+        },
+        {name: 'Rosemary',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Rosemary.jpeg',
+        description: 'Culinary herb, famous for its agrestic profile with a camphorous, minty top note; its name derives from Latin ("dew of the sea")',
+        category: 'Green'
+        },
+        {name: 'Salt',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/salt.jpeg',
+        description: 'A savory note that can render interesting a marine, woody or -more intriguingly- a gourmand composition. Pairs great with vetiver and some fruits or sweet notes (chocolate, cream, biscuit) to provide an unusual and arresting effect in modern compositions. Can also be due to a high ambergris (natural or synthetic) content.',
+        category: 'Water'
+        },
+        {name: 'Spikenard',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Spikenard.jpeg',
+        description: 'Spikenard is astonishingly herbaceous and aromatic, warm and sensual. This fragrance is also a combination of sweet, resinous, spicy, and animal-fat odors.  With Jatamansi, the essential oil is like an organic earthy scent.',
+        category: 'Green'
+        },
+        {name: 'Tarragon',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Tarragon.jpeg',
+        description: 'Characteristic sweet, mildly anisic note of the popular culinary herb owing its scent to estragole, sometimes substituted with synth Toscanol',
+        category: 'Green'
+        },
+        {name: 'Tobacco',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Tobacco.jpeg',
+        description: 'Rich, nuanced, warm and sweetish scent deriving from the macerated nicotiana tabacum with facets of whiskey, maple and caramel, but also containing molecules of rosy-fruity and violet-like aspects as well.',
+        category: 'Green'
+        },
+        {name: 'Thyme',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Thyme.jpeg',
+        description: 'Herbal culinary note with phenolic (tarry) aspects with a spicy, leathery effect especially in masculine fragrance',
+        category: 'Green'
+        },
+        {name: 'Metallic',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Metallic.jpeg',
+        description: 'Metallic notes are typically distinguished by their clean, cool, fresh and a bit sterile feel. This term, applied to perfumery, denotes a smell reminiscent of metal.',
+        category: 'Water'
+        },
+        {name: 'Sandalwood',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Sandalwood.jpeg',
+        description: 'The classic oriental woody note, milky, soft, sturdy, rich, with a green top note and a satisfying lingering scent. The best quality used to be the Mysore sandalwood variety from India, nowadays greatly reduced to the point of extinction from perfumery due to shortage of the natural material (the species is protected from harvesting because it is an endangered species).',
+        category: 'Water'
+        },
+        {name: 'Seaweed',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Seaweed.jpeg',
+        description: 'Algae note with savory, marine, grassy aspects, used in "marine" blends for authenticity',
+        category: 'Water'
+        }
+        ];
+        floral_obj = [
+        {name: 'Beeswax',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Beeswax.jpg',
+        description: 'The note of beeswax is among the few natural "animalic" notes in perfumery that are totally cruelty-free, i.e. involving no harm to the animal from which they are derived. For this reason, beeswax absolute is among the most prized materials in the natural perfumery palette, where the absence of synthetics can be a problem. With its naturally fixative qualities, it aids the anchoring of more volatile notes.',
+        category: 'Floral Oriental'
+        },
+        {name: 'African-orange-flower',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/African-Orange-Flower.jpg',
+        description: 'Fresh and sweetish floral note coming from citrus aurantia tree (bitter orange tree) through solvent extraction of the flowers pomade; very popular in men and women fragrances, can veer towards "clean" or more fleshy',
+        category: 'Soft Oriental'
+        },
+        {name: 'Benzoin',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/benzoin.jpg',
+        description: 'Benzoin is an oil extracted from the Styrax Benzoin tree, produced by the tree in response to deliberate damage. It is a common ingredient in incense, perfumes, food flavoring agents and also has medicinal value as a stypic, antiseptic and an inhalant.',
+        category: 'Floral'
+        },
+        {name: 'Cacao',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/cacao.jpeg',
+        description: 'The fruit of the cocoa tree (theobroma cacao), full, sensuous, slightly spicy and bitterish with an underlay of fat.',
+        category: 'Floral Oriental'
+        },
+        {name: 'Coffee',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/coffee.jpeg',
+        description: 'Coffee berries are produced by the evergreen bush of the genus Coffea. In perfumes the coffee note is an intense, dark roast facet that is linked to the cocoa facet of patchouli in Borneo 1834 (Lutens).',
+        category: 'Floral Oriental'
+        },
+        {name: 'Heather',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/heather.jpeg',
+        description: 'Heather is a low growing plant, native to Europe and Minor Asia.',
+        category: 'Floral Oriental'
+        },
+        {name: 'Poplar-populus-bud',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Poplar-populus-bud.jpeg',
+        description: 'They are a derivative of balsamic poplar, a tree found in Northern climates.',
+        category: 'Floral Oriental'
+        },
+        {name: 'Caramel',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/caramel.jpeg',
+        description: 'Candy-deep, sensual and rich, creamy buttery lactonic note that enriches gourmand perfumes and adds sweetness in florals but it can also be savory-sweet in some fragrances, like salted caramel.',
+        category: 'Fruity'
+        },
+        {name: 'Honey',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/honey.jpeg',
+        description: 'Sweet, edible, golden autumnal note which illuminates a composition relying on citruses and oriental notes and gives profusion to floral notes',
+        category: 'Floral'
+        },
+        {name: 'Tropical',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/tropical.jpeg',
+        description: 'General classification of sweet, lush, mouthwatering fruits that grow in the tropics, like coconut, pineapple, guava etc.',
+        category: 'Floral'
+        },
+        {name: 'Aldehyde',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/aldehyde.jpeg',
+        description: 'A vast group of components of organic origin reproduced in the lab. In perfumery parlance by "aldehydes" we mostly refer to aliphatic "fatty" aldehydes, those used in a reference string in Chanel No.5, Chanel No.22, Lanvin Arpege, Lauder White Linen and other classics. These aldehydes provide a soapy-waxy-lemony-floral effect to the formula and are used to classify a fragrance as "aldehydic".',
+        category: 'Soft Floral'
+        },
+        {name: 'Amber',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/amber.jpeg',
+        description: 'Sweet, resinous, cozy and warm, often rather powdery note recreated from a mix of balsams, usually labdanum, benzoin, vanilla, styrax and fir or a combination of some of these.',
+        category: 'Soft Floral'
+        },
+        {name: 'Rose',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/rose.jpeg',
+        description: 'The king of flowers, lemony fresh with various nuances of powder, wood notes or fruit, feminine, clean, intensely romantic',
+        category: 'Soft Floral'
+        },
+        {name: 'Ylang-ylang',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/y-lang.jpeg',
+        description: 'Rich, floral, banana-toned, jasmine nuances, sweet and narcotic, aphrodisiac and erotic.',
+        category: 'Soft Floral'
+        },
+        {name: 'Lavender',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/lavender.jpeg',
+        description: 'Aromatic clean note, medicinal on one end and licorice-like on the other end.',
+        category: 'Soft Oriental'
+        },
+        {name: 'Cardamom',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/cardamom.jpeg',
+        description: 'The steam distilled essence from the fruit of the green cardamom, intensely sweet resinous-aromatic and slightly spicy, often used to aromatize coffee in the Middle East.',
+        category: 'Soft Floral'
+        },
+        {name: 'Tagetes',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/tagetes.jpeg',
+        description: 'Hay-toned, earthy, rich, musty, honeyed aspects.',
+        category: 'Soft Floral'
+        },
+        {name: 'Rhododendron',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/rhododendron.jpeg',
+        description: 'Smelling of honey and pollen, with a soft focus nuance.',
+        category: 'Soft Floral'
+        }
+        ];
+        woods_obj = [
+        {name:'Balsam-fir',
+        source_link:'https://scenttrunk.com/wp-content/uploads/2015/06/Balsam-fir.jpg',
+        description: ' A classic coniferous, evergreen scent, evocative of Christmas and the taiga. Green, woody, balsamic, fresh.',
+        category: 'Dry Woods'
+        },
+        {name: 'Agarwood',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Agarwood.jpg',
+        description: 'The pathological secretion of the aquillaria tree, a rich, musty woody-nutty scent that is highly prized in the Middle East. In commercial perfumery it is safe to say all "oud" is a recreated synthetic note.',
+        category: 'Mossy Woods'
+        },
+        {name: 'Camphor',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/camphor.jpg',
+        description: 'White crystals that smell like mothballs, this note is used to render a bracing, intensely green and pungent note that cuts through the intense sweetness and decay of some white flowers. Especially infamous in Tubereuse Criminelle by Lutens and Carnal Flower by F.Malle where it balances the tuberose.',
+        category: 'Woods'
+        },
+        {name: 'Cedar',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Cedar1.jpeg',
+        description: 'Austere and somber woody note coming from either the Atlas Mountains (Morocco) or the Virginia (US) cedarwood. There are also many cedar-smelling synthetics in use. Probably the most beloved woody note in the Serge Lutens line of fragrances.',
+        category: 'Dry Woods'
+        },
+        {name: 'Pine',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/pine.jpeg',
+        description: 'The essence of pine needles, a resinous woody smell that is highlighted in Fille en Aiguilles (S.Lutens)',
+        category: 'Dry Woods'
+        },
+        {name: 'Olibanum',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Olibanum.jpeg',
+        description: 'It s an aromatic, congealed, resinous sap from a specific variety of trees in the genus Boswellia of the family Burseraceae.',
+        category: 'Dry Woods'
+        },
+        {name: 'Virginia-cedar',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Virginia-cedar.jpeg',
+        description: 'They are a species of juniper which can be found in North America.',
+        category: 'Dry Woods'
+        },
+        {name: 'Boletus-edulis',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Boletus-edulis.jpeg',
+        description: 'Natural mushroom-smelling note that provides mustiness and dewiness without "marine" effects in mostly natural perfumes',
+        category: 'Mossy Woods'
+        },
+        {name: 'Cypress',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Cypress.jpeg',
+        description: 'Cypress is a name that relates to the plants of the cypress family Cupressaceae, growing in the temperate regions of the world. This is a very ancient family of trees that grew more than 200 million years ago on the supercontinent Pangaea. Today, Cypresses are found on all continents except Antarctica.',
+        category: 'Mossy Woods'
+        },
+        {name: 'Oak-moss',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Oak-moss.jpeg',
+        description: 'An inky, bitter-smelling forest floor evocative, prized essence coming from the lichen that grows on oak trees in Europe (harvested in the Balkans). Nowadays severely restricted under skin sensitization concerns, it is nevertheless an essential part of chypre fragrances and fougere fragrances.',
+        category: 'Mossy Woods'
+        },
+        {name: 'Thuja',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Thuja.jpeg',
+        description: 'Woody note reminiscent of the thuja tree, which belongs in the cypress family. Also known as red cedar or white cedar, though it is not related to cedar botanically.',
+        category: 'Mossy Woods'
+        },
+        {name: 'Driftwood',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Driftwood.jpeg',
+        description: 'A watery, slightly musty but very light note that is evocative of driftwood and vast expanses of water. Beautifully rendered in Preparation Parfumee by Andree Putman.',
+        category: 'Woods'
+        },
+        {name: 'Oud',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Oud.jpeg',
+        description: 'The pathological secretion of the aquillaria tree, a rich, musty woody-nutty scent that is highly prized in the Middle East. In commercial perfumery it is safe to say all "oud" is a recreated synthetic note.',
+        category: 'Woods'
+        },
+        {name: 'Rum',
+        source_link: 'https://scenttrunk.com/wp-content/uploads/2015/06/Rum.jpeg',
+        description: 'Complex, sweet and aromatic chord that brings on succulence and molasses-tinged nuances to gourmands and woody fragrances, as well as an anchor for fresher, tropical compositions where it is rendered in a light manner (such as in Virgin Island Water by Creed).',
+        category: 'Woods'
+        }
+        ];
+
+            available = [];
+
+            $(function() {
+                names = [woods_obj, oriental_obj, fresh_obj, floral_obj];
+                for (i = 0; i < names.length; i++) {
+                    for (j = 0; j < names[i].length; j++) {
+                        available.push(names[i][j].name);
+                    }
+                }
+            });
+
+            $(function() {
+                $( "#tags" ).autocomplete({
+                    source: available
+                });
+            });
+
+            image = "";
+
+            getPhoto = function(n) {
+                names = [woods_obj, oriental_obj, fresh_obj, floral_obj];
+                for (i = 0; i < names.length; i++) {
+                    for (j = 0; j < names[i].length; j++) {
+                        if (names[i][j].name == n) {
+                            image = names[i][j].source_link;
+                        }
+                    }
+                }
+            }
+
+            val = 0;
+
+            image = "";
+
+            $("#submit").click( function() {
+                var sub = document.getElementById("tags").value;
+                if ((val == 0) || (val == 1)) {
+
+
+                    $("#notes").append(
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>'
+                    );
+
+                    if (val == 0) {
+                        $("#love1").append(
+                            '<h1> <small> ' + sub + '</small> </h1>'
+                        );
+                    }
+
+                    if (val == 1) {
+                        $("#love1").append(
+                            '<h1> <small> ' + sub + '</small> </h1>'
+                        );
+                    }
+
+                    val++;
+
+                } else {
+                    for (i = 0; i < 4; i++) {
+                        j = document.getElementById("clear");
+                        j.remove(0);
+                    }
+
+                    $("#notes").append(
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="col-xs-4 col-md-3" id="clear" style="margin-top: 20px;">' +
+                        '<a href="#" id="' + sub +'" class="thumbnail portlet-header">' +
+                        '<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwODI4OTA0MzggdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTA4Mjg5MDQzOCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="...">' +
+                        '</a>' +
+                        '</div>'
+                    );
+
+
+                    val--;
+                }
+
+
+
+            });
+
+
+        </script>
+    </body>
+</html>

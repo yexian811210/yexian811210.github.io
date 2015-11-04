@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Step 1</title>
+
+        <link href="css/first-step.css" rel="stylesheet">
+        <link href="css/scenttrunk-layout.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
+
+        <style type="text/css">
+        /* all attributes of call-to-action-button should be deleted once new survey is pushed alive, because these attributes already in wordpress */
+            #call-to-action-button {
+                 font-size: 18px;
+                 font-family: "Open Sans";
+                 font-weight: 700;
+                 letter-spacing: 2px;
+                 display: table; 
+                 margin: auto; 
+            }
+            #call-to-action-button a {
+                text-decoration: none;
+                border: 0px;
+                font-family: 'Montserrat',sans-serif;
+                background-color: #990100 !important;
+                padding: 8px 20px 8px 20px;
+                color: white;  
+                border-radius: 20px;
+                transition: background-color 0.25s ease-in-out;    
+            }
+            #call-to-action-button  a:hover {
+                background-color: #b90504 !important;
+            }
+            .frag_search_button {
+                padding:10px;
+                cursor: pointer;
+                border-radius: 20px;
+                border: 0px;
+            }
+            .ui-autocomplete {
+                max-height: 200px;
+                overflow-y: auto;
+                /* prevent horizontal scrollbar */
+                overflow-x: hidden;
+            }
+            #tags {
+                height: 25px;
+            }
+            span.survey_two_next_button {
+                float: right;
+                margin: 20px !important;
+            }
+            div.step_two_fragrance_checker {
+                border-bottom: 2px solid black;
+            }
+            div.step_two_fragrance_checker h2 {
+                text-align:center;
+            }
+            div.input-group {
+                text-align: center;
+            }
+            div.step_two_show_accords {
+                text-align: center;
+            }
+            div.single_accord {
+                float: left;
+                margin: 20px;
+                position: relative;
+            }
+            div.single_scent_wrap {
+                width: 100%;
+            }
+            .four_accords_row {
+                width: 70%;
+                margin: auto;
+            }
+            h3.name_of_accord {
+                position: absolute;
+                width: 200px;
+                bottom: 0;
+                margin-bottom: 3px;
+                color: white;
+                background: rgba(56,56,56,0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="survey_two_container">
+
+            <div class="step_two_fragrance_checker">
+                <h2>Tell us fragrance you love</h2>
+                <div class="input-group">
+                    <span class="input-group-btn" id="submit">
+                        <button class="frag_search_button" type="button">Search For</button>
+                    </span>
+                    <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
+                </div><!-- /input-group -->
+                <span id="call-to-action-button" class="survey_two_next_button">
+                        <a href="2step.html">Next Step</a>
+                </span>
+                <div style="clear:both"></div>
+            </div>
+
+            <div class="step_two_show_accords">
+
+                <div class="row marketing c">
+                    <div class="" id="defaultFrag">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
+
