@@ -99,6 +99,10 @@ $(function() {
 });
 
 $("#submit").click( function() {
+    if($('#show_input_accord').children().length>0) {
+        alert("make a decision for previous accord!");
+        return;
+    }
     var sub = document.getElementById("tags").value;
 
     if ((sub != "") && ( $.inArray(sub, available) != -1) && ( $.inArray(sub, avail_frag) == -1) &&( $.inArray(sub, used_arr) == -1 )) {

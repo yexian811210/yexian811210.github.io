@@ -9,31 +9,32 @@
 
         <link href="css/first-step.css" rel="stylesheet">
         <link href="css/scenttrunk-layout.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
 
         <style type="text/css">
         /* all attributes of call-to-action-button should be deleted once new survey is pushed alive, because these attributes already in wordpress */
-            #call-to-action-button {
-                 font-size: 18px;
-                 font-family: "Open Sans";
-                 font-weight: 700;
-                 letter-spacing: 2px;
-                 display: table; 
-                 margin: auto; 
+             div.survry_one_container h1, h2, h3, h4, h5, p, a {
+            font-family: 'Montserrat',sans-serif;
+            text-decoration: none;
             }
-            #call-to-action-button a {
-                text-decoration: none;
-                border: 0px;
+             div.survey_one_container #call-to-action-button a, div.survey_one_container .call-to-action-button a {
                 font-family: 'Montserrat',sans-serif;
+                border: 0 !important;
                 background-color: #990100 !important;
-                padding: 8px 20px 8px 20px;
-                color: white;  
                 border-radius: 20px;
-                transition: background-color 0.25s ease-in-out;    
+                color: white;
+                padding: 8px 20px 8px 20px;
+                transition: background-color .25s ease-in-out;
             }
-            #call-to-action-button  a:hover {
+             div.survey_one_container .call-to-action-button a {
+                border-top-left-radius: 0px !important;
+                border-bottom-left-radius: 0px !important;         
+            }
+             div.survey_one_container #call-to-action-button a:hover, div.survey_one_container .call-to-action-button a:hover {
                 background-color: #b90504 !important;
-            }
+                font-family: 'Montserrat',sans-serif;
+             }
             .frag_search_button {
                 padding:10px;
                 cursor: pointer;
@@ -88,15 +89,13 @@
         </style>
     </head>
     <body>
-        <div class="survey_two_container">
+        <div class="survey_one_container">
 
             <div class="step_two_fragrance_checker">
                 <h2>Tell us fragrance you love</h2>
                 <div class="input-group">
-                    <span class="input-group-btn" id="submit">
-                        <button class="frag_search_button" type="button">Search For</button>
-                    </span>
                     <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
+                        <span class="call-to-action-button" id="submit" style="margin-left: -3px;"><a href="#">Search</a></span>
                 </div><!-- /input-group -->
                 <span id="call-to-action-button" class="survey_two_next_button">
                         <a href="2step.html">Next Step</a>
