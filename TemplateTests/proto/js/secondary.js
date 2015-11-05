@@ -121,12 +121,12 @@ $("#submit").click( function() {
                 '<div id="loha_button_wrapper">'+
                 '<span class="love_button" id="call-to-action-button">'+
                 '<a href="#">'+
-                'love it' +
+                'love' +
                 '</a>'+
                 '</span>'+
                 '<span class="hate_button" id="call-to-action-button">'+
                 '<a href="#">'+
-                'hate it' +
+                'hate' +
                 '</a>'+
                 '</span>'+
                 '</div>'+
