@@ -27,6 +27,9 @@
                 padding: 8px 20px 8px 20px;
                 transition: background-color .25s ease-in-out;
             }
+            div.step_two_fragrance_checker div.input-group .call-to-action-button a {
+                background-color: #4a6e99 !important;
+            }
              div.survey_one_container .call-to-action-button a {
                 border-top-left-radius: 0px !important;
                 border-bottom-left-radius: 0px !important;         
@@ -55,7 +58,11 @@
                 margin: 20px !important;
             }
             div.step_two_fragrance_checker {
+                border-top: 2px solid black;
                 border-bottom: 2px solid black;
+                background-color: #efefef;
+                padding-top: 20px;
+                overflow: hidden;
             }
             div.step_two_fragrance_checker h2 {
                 text-align:center;
@@ -92,13 +99,13 @@
         <div class="survey_one_container">
 
             <div class="step_two_fragrance_checker">
-                <h2>Tell us fragrance you love</h2>
+                <h2 style="font-weight:300;">Let us know what fragrances you <b>love</b></h2>
                 <div class="input-group">
                     <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
                         <span class="call-to-action-button" id="submit" style="margin-left: -3px;"><a href="#">Search</a></span>
                 </div><!-- /input-group -->
                 <span id="call-to-action-button" class="survey_two_next_button">
-                        <a href="2step.html">Next Step</a>
+                        <a href="2step.html" style="border-radius: 0px;">Next Step</a>
                 </span>
                 <div style="clear:both"></div>
             </div>
