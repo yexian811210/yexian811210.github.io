@@ -58,6 +58,10 @@
                 margin: 20px !important;
             }
             div.step_two_fragrance_checker {
+                position: fixed;
+                width: 100%;
+                z-index: 10000;
+                overflow: hidden;
                 border-top: 2px solid black;
                 border-bottom: 2px solid black;
                 background-color: #efefef;
@@ -70,6 +74,8 @@
                 text-align: center;
             }
             div.step_two_show_accords {
+                position: relative;
+                top: 150px;
                 text-align: center;
             }
             div.single_accord {
@@ -95,7 +101,7 @@
         </style>
     </head>
     <body>
-        <div class="survey_one_container">
+        <div class="survey_one_container" style="position: absolute;width: 100%;">
 
             <div class="step_two_fragrance_checker">
                 <h2 style="font-weight:300;">Let us know what fragrances you <b>love</b></h2>
@@ -104,7 +110,7 @@
                         <span class="call-to-action-button" id="submit" style="margin-left: -3px;"><a href="#">Search</a></span>
                 </div><!-- /input-group -->
                 <span id="call-to-action-button" class="survey_two_next_button">
-                        <a href="2step.html" style="border-radius: 0px;">Next Step</a>
+                        <a href="2step.html" style="border-radius: 6px;">Next Step</a>
                 </span>
                 <div style="clear:both"></div>
             </div>
