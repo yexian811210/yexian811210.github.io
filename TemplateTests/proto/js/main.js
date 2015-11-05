@@ -113,6 +113,7 @@ getScents = function(n,a) {
 $("#submit").click( function() {
 
     var sub = document.getElementById("tags").value;
+    $('#tags').val('');
 
     if ((sub != "") && ( $.inArray(sub, avail_frag) != -1) && ( $.inArray(sub, used_frag_arr) == -1 )) {
 
