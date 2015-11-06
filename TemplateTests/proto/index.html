@@ -9,18 +9,16 @@
 
         <link href="css/first-step.css" rel="stylesheet">
         <link href="css/scenttrunk-layout.css" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
 
         <style type="text/css">
         /* all attributes of call-to-action-button should be deleted once new survey is pushed alive, because these attributes already in wordpress */
              div.survry_one_container h1, h2, h3, h4, h5, p, a {
-            font-family: 'Montserrat',sans-serif;
+            font-family: Arial;
             text-decoration: none;
             }
              div.survey_one_container #call-to-action-button a, div.survey_one_container .call-to-action-button a {
-                font-family: 'Montserrat',sans-serif;
-                border: 0 !important;
+                 border: 0 !important;
                 background-color: #FF2800 !important;
                 border-radius: 20px;
                 color: white;
@@ -35,8 +33,7 @@
                 border-bottom-left-radius: 0px !important;         
             }
              div.survey_one_container #call-to-action-button a:hover, div.survey_one_container .call-to-action-button a:hover {
-                background-color: #b90504 !important;
-                font-family: 'Montserrat',sans-serif;
+                background-color: #ff6605 !important;
              }
             .frag_search_button {
                 padding:10px;
@@ -75,7 +72,7 @@
             }
             div.step_two_show_accords {
                 position: relative;
-                top: 150px;
+                top: 200px;
                 text-align: center;
             }
             div.single_accord {
@@ -85,6 +82,10 @@
             }
             div.single_scent_wrap {
                 width: 100%;
+            }
+            div.single_scent_wrap h2 {
+                font-style: italic;
+                font-weight: 300;
             }
             .four_accords_row {
                 width: calc(1300px - 22%);
@@ -104,13 +105,14 @@
         <div class="survey_one_container" style="position: absolute;width: 100%;">
 
             <div class="step_two_fragrance_checker">
-                <h2 style="font-weight:300;">Let us know what fragrances you <b>love</b></h2>
+                <h2 style="font-weight:300;">Tell us what fragrances you <b>love</b> so we can understand <b>your</b> preferences.</h2>
+                <h4 style="text-align:center;font-weight: 300;">You’ll be able to further personalize in the next step</h4>
                 <div class="input-group">
                     <input type="text" class="form-control" id="tags" placeholder="Scents You Like..">
                         <span class="call-to-action-button" id="submit" style="margin-left: -3px;"><a href="#">Search</a></span>
                 </div><!-- /input-group -->
                 <span id="call-to-action-button" class="survey_two_next_button">
-                        <a href="2step.html" style="border-radius: 6px;">Next Step</a>
+                        <a href="2step.html" style="border-radius: 6px;font-size: 0.8em;padding: 8px 10px 8px 10px;">Next Step</a>
                 </span>
                 <div style="clear:both"></div>
             </div>
