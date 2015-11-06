@@ -4,7 +4,7 @@ var available = [];
 var avail_frag = [];
 
 var div_count = 0;
-
+var div_count_before = 0;
 var frag = [];
 
 image = '';
@@ -116,18 +116,28 @@ $("#submit").click( function() {
     $('#tags').val('');
 
     if ((sub != "") && ( $.inArray(sub, avail_frag) != -1) && ( $.inArray(sub, used_frag_arr) == -1 )) {
-
-        $("#defaultFrag").append(
-                '<div class="single_scent_wrap">' +
+        if(div_count>0) {
+            $("#single_scent_wrap_"+div_count_before+"").before(
+                '<div class="single_scent_wrap" id="single_scent_wrap_'+div_count+'">' +
                 '<h2>'+ sub + " has:" +'</h2>'+
                 '<div class="four_accords_row" id="scent_number_'+div_count+'">' +
                 '</div>'+
                 '</div>'
                 );
-
+        }
+        else {
+        $("#defaultFrag").append(
+                '<div class="single_scent_wrap" id="single_scent_wrap_'+div_count+'">' +
+                '<h2>'+ sub + " has:" +'</h2>'+
+                '<div class="four_accords_row" id="scent_number_'+div_count+'">' +
+                '</div>'+
+                '</div>'
+                );
+         };
         getScents(sub,div_count);
 
         div_count++;
+        div_count_before = div_count -1;
 
         for(var b=0;b<used_arr.length;b=b+2){
             var tem_value = used_arr[b];
