@@ -137,7 +137,7 @@ $("#submit").click( function() {
         //used_arr.push(sub);
     }
     $('.love_button').on("click",function(){
-           $("#defaultNotes").append(
+           $("#defaultNotes").prepend(
                 '<div class="single_note_container" id="' + sub + 'rev" style="margin-top: 20px;">' +
                 '<a href="#" id="' + sub +'" class="single_note_element portlet-header">' +
                 '<img src=' + image  + ' alt="...">' +
@@ -155,7 +155,7 @@ $("#submit").click( function() {
           used_arr.push(sub);
     });
     $('.hate_button').on("click",function(){
-           $("#hateNotes").append(
+           $("#hateNotes").prepend(
                 '<div class="single_note_container" id="' + sub + 'rev" style="margin-top: 20px;">' +
                 '<a href="#" id="' + sub +'" class="single_note_element portlet-header">' +
                 '<img src=' + image  + ' alt="...">' +
