@@ -5,22 +5,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>To do register</title>
+        <title>Dashboard</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
+        <link h
         <style type="text/css">
-        div#landing-page {
-        	padding-top: 140px;
-        }
-        div#landing-page form.form-horizontal {
-        	max-width: 40%;
-        	margin: 0 auto;
-        }
-
         </style>
     </head>
+    <?php 
+      session_start();
+      if($_SESSION['user_id']) {
+      }
+      else {
+        header("location: index.html");
+      }
+    ?>
     <body>
-           <nav class="navbar navbar-default navbar-fixed-top">
+                  <nav class="navbar navbar-default navbar-fixed-top">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -38,7 +40,7 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                     <li><a href="#">Link</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="#">Logout</a></li>
                   </ul>
                   <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -50,27 +52,9 @@
                 </div><!-- /.container-fluid -->
               </nav>
 
-
-    	<div class="container" id="landing-page">
-    		<form action ="register.php" class="form-horizontal" method="post">
-    			<div class="form-group">
-   					 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-   					 <div class="col-sm-10">
-     				 <input type="email" class="form-control" id="inputEmail3" name="email_address" placeholder="Email">
-    				 </div>
-  				</div>
-  				<div class="form-group">
-    				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    				<div class="col-sm-10">
-      				<input type="password" class="form-control" id="inputPassword3" name="password" placeholder="Password">
-    				</div>
-  				</div>
-  				<div class="form-group">
-   			    	<div class="col-sm-offset-4 col-sm-10">
-      			<button type="submit" class="btn btn-primary" style="width: 50%;">Register</button>
-    				</div>
-  				</div>
-    		</form> 
-    	</div>
-    </body>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+                        <script src="js/bootstrap.js"></script>
+                        <script src="js/bootstrap.min.js"></script>
+    	</body>
 </html>
