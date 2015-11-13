@@ -65,6 +65,19 @@
           <h1 class="page-header" style="margin-top: 0px;">Dashboard</h1>
           <h2 class="sub-header">Section title</h2>
           <div class="show_to_do_list">
+            <?php
+                mysql_connect("localhost", "root","") or die(mysql_error());
+                mysql_select_db("first_db") or die("Cannot connect to database");
+                $user_id = $_SESSION['user_id'];
+                $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id'");
+                while($row = mysql_fetch_array($query)) {
+                  Print '<div class="event_list_from_db">';
+                  Print '<p style="width: 50%; float: left;">' . $row['user_event'] . '</p>';
+                  Print '<button type="button" class="btn btn-info" id = "done_button">' . "Done" . '</button>';
+                  Print '</div>';
+                }
+
+            ?>
           </div>
 
           <form>
@@ -93,9 +106,13 @@
             success:function(data){  
 39         } 
          });
+            jQuery('#event_info').val('');
             jQuery('.show_to_do_list').append(
                 '<div class="single_to_do_event">' +
-                '<p>' + event_information_str + '</p>' +
+                '<p style="width: 50%; float: left;">' + event_information_str + '</p>' +
+                '<button type ="button" class="btn btn-info" id = "done_button" >' + 
+                'Done' +
+                '</button>' +
                 '</div>'
               );
         });
