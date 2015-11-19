@@ -9,8 +9,11 @@
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
-        <link h
+        <link h>
         <style type="text/css">
+        div.event_list_from_db {
+          margin-bottom: 10px;
+        }
         </style>
     </head>
     <?php 
@@ -69,7 +72,7 @@
                 mysql_connect("localhost", "root","") or die(mysql_error());
                 mysql_select_db("first_db") or die("Cannot connect to database");
                 $user_id = $_SESSION['user_id'];
-                $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id'");
+                $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id' AND completed = '0'");
                 $num_of_rows = mysql_num_rows($query);
                 $count = 0;
                 while($row = mysql_fetch_array($query)) {
@@ -85,8 +88,8 @@
 
           <form>
             <div class="to_do_area">
-             <button type="button" class="btn btn-info" id="to_do_button">+</button>
-             <input type="text" class="form-control" id="event_info" style="float:left;width:70%;" name="to_do_event" placeholder="need to do" aria-describedby="sizing-addon1">
+             <button style="margin-left: 10px;" type="button" class="btn btn-info" id="to_do_button">+</button>
+             <input type="text" class="form-control" id="event_info" style="float:left;width:50%;" name="to_do_event" placeholder="need to do" aria-describedby="sizing-addon1">
             </div>
           </form>
 
@@ -120,7 +123,7 @@
             url:'event_handler.php',  
             data:event_information,
             success:function(data){  
-39         } 
+           } 
          });
             jQuery('#event_info').val('');
             jQuery('.show_to_do_list').append(
