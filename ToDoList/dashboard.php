@@ -102,13 +102,13 @@
         jQuery('#to_do_button').click(function(){
             var event_information = jQuery('#event_info').serialize();
             var event_information_str = jQuery('#event_info').val();
-            var item_class = jQuery( '.event_list_from_db' ).last().attr('class');
+            var item_class = jQuery( '.event_list_from_db' ).last().attr('id');
             var class_number;
             if(item_class == undefined) {
                 class_number = 0;
             }
             else {
-            class_number = item_class.slice(-1);//only read one digit, need to be fixed
+            class_number = item_class.slice(5,item_class.length);
             class_number = parseInt(class_number);
             class_number = class_number + 1;
             }
@@ -134,17 +134,17 @@
                 }
         });
 
-        jQuery('.done_button').click(function(){
+        jQuery( document ).on( 'click', '.done_button', function() {
             var done_class_id = jQuery( this ).parent().attr( 'id' );
             var done_event_information = jQuery('#'+done_class_id+' p').text();
-            console.log(done_event_information);
             jQuery.ajax({
               type: 'POST',
               url: 'done_event_handler.php',
               data: {event_name: done_event_information}
             });
             jQuery('#'+done_class_id+'').remove();
-        });
+          });
+
         </script>
 
         <script src="js/bootstrap.js"></script>
