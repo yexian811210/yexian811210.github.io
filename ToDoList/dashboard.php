@@ -70,11 +70,14 @@
                 mysql_select_db("first_db") or die("Cannot connect to database");
                 $user_id = $_SESSION['user_id'];
                 $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id'");
+                $num_of_rows = mysql_num_rows($query);
+                $count = 0;
                 while($row = mysql_fetch_array($query)) {
-                  Print '<div class="event_list_from_db">';
-                  Print '<p style="width: 50%; float: left;">' . $row['user_event'] . '</p>';
-                  Print '<button type="button" class="btn btn-info" id = "done_button">' . "Done" . '</button>';
+                  Print '<div class="event_list_from_db event_list_'. $count .'" id = "item_'. $count .'">';
+                  Print '<p class="event_num_'. $count .'" style="width: 50%; float: left;">' . $row['user_event'] . '</p>';
+                  Print '<button type="button" class="btn btn-info done_button">' . "Done" . '</button>';
                   Print '</div>';
+                  $count = $count + 1;
                 }
 
             ?>
@@ -99,6 +102,19 @@
         jQuery('#to_do_button').click(function(){
             var event_information = jQuery('#event_info').serialize();
             var event_information_str = jQuery('#event_info').val();
+            var item_class = jQuery( '.event_list_from_db' ).last().attr('class');
+            var class_number;
+            if(item_class == undefined) {
+                class_number = 0;
+            }
+            else {
+            class_number = item_class.slice(-1);//only read one digit, need to be fixed
+            class_number = parseInt(class_number);
+            class_number = class_number + 1;
+            }
+            if( event_information_str == '' ) {
+            }
+            else {
             jQuery.ajax({  
             type:'POST',      
             url:'event_handler.php',  
@@ -108,13 +124,26 @@
          });
             jQuery('#event_info').val('');
             jQuery('.show_to_do_list').append(
-                '<div class="single_to_do_event">' +
-                '<p style="width: 50%; float: left;">' + event_information_str + '</p>' +
-                '<button type ="button" class="btn btn-info" id = "done_button" >' + 
+                '<div class="event_list_from_db event_list_'+ class_number +'" id = "item_'+ class_number +'">' +
+                '<p class="event_num_'+ class_number +'" style="width: 50%; float: left;">' + event_information_str + '</p>' +
+                '<button type ="button" class="btn btn-info done_button">' + 
                 'Done' +
                 '</button>' +
                 '</div>'
               );
+                }
+        });
+
+        jQuery('.done_button').click(function(){
+            var done_class_id = jQuery( this ).parent().attr( 'id' );
+            var done_event_information = jQuery('#'+done_class_id+' p').text();
+            console.log(done_event_information);
+            jQuery.ajax({
+              type: 'POST',
+              url: 'done_event_handler.php',
+              data: {event_name: done_event_information}
+            });
+            jQuery('#'+done_class_id+'').remove();
         });
         </script>
 
