@@ -14,6 +14,9 @@
         div.event_list_from_db {
           margin-bottom: 10px;
         }
+        div.show_done_list {
+          display: none;
+        }
         </style>
     </head>
     <?php 
@@ -60,8 +63,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">To Do List</a></li>
-            <li><a href="#">Done</a></li>
+            <li id = "to_do_div_trigger"><a href="#">To Do List</a></li>
+            <li id = "done_div_trigger"><a href="#">Done</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-md-10 main">
@@ -84,7 +87,7 @@
                 }
 
             ?>
-          </div>
+          
 
           <form>
             <div class="to_do_area">
@@ -92,6 +95,23 @@
              <input type="text" class="form-control" id="event_info" style="float:left;width:50%;" name="to_do_event" placeholder="need to do" aria-describedby="sizing-addon1">
             </div>
           </form>
+
+          </div>
+          <div class="show_done_list">
+            <?php
+            mysql_connect("localhost", "root","") or die(mysql_error());
+            mysql_select_db("first_db") or die("Cannot connect to database");
+            $user_id = $_SESSION['user_id'];
+            $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id' AND completed = '1'");
+            $done_count = 0;
+            while($row = mysql_fetch_array($query)) {
+              Print '<div class="done_list_from_db done_list_'. $done_count .'" id = "done_item_'. $count .'">';
+              Print '<p class="done_num_'. $done_count .'" style="width: 100%; float: left; text-decoration: line-through;">' . $row['user_event'] . '</p>';
+              Print '</div>';
+              $done_count = $done_count + 1;
+            }
+            ?>
+          </div>
 
         </div>
       </div>
@@ -148,6 +168,14 @@
             jQuery('#'+done_class_id+'').remove();
           });
 
+        jQuery('#done_div_trigger').click(function() {
+              jQuery('.show_to_do_list').hide();
+              jQuery('.show_done_list').show();
+        });
+        jQuery('#to_do_div_trigger').click(function(){
+              jQuery('.show_done_list').hide();
+              jQuery('.show_to_do_list').show();
+        });
         </script>
 
         <script src="js/bootstrap.js"></script>
