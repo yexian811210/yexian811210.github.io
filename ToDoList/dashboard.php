@@ -13,9 +13,15 @@
         <style type="text/css">
         div.event_list_from_db {
           margin-bottom: 10px;
+          border-bottom: 1px solid rgb(206,194,194);
+          width: 50%;
+          padding-bottom: 10px;
         }
         div.show_done_list {
           display: none;
+        }
+        .done_button {
+          float: right;
         }
         </style>
     </head>
@@ -71,6 +77,7 @@
           <h1 class="page-header" style="margin-top: 0px;">Dashboard</h1>
           <h2 class="sub-header">Section title</h2>
           <div class="show_to_do_list">
+            <div class="to_do_list_events">
             <?php
                 mysql_connect("localhost", "root","") or die(mysql_error());
                 mysql_select_db("first_db") or die("Cannot connect to database");
@@ -82,12 +89,14 @@
                   Print '<div class="event_list_from_db event_list_'. $count .'" id = "item_'. $count .'">';
                   Print '<p class="event_num_'. $count .'" style="width: 50%; float: left;">' . $row['user_event'] . '</p>';
                   Print '<button type="button" class="btn btn-info done_button">' . "Done" . '</button>';
+                  Print '<div style="clear:both;">';
+                  Print '</div>';
                   Print '</div>';
                   $count = $count + 1;
                 }
 
             ?>
-          
+            </div>
 
           <form>
             <div class="to_do_area">
@@ -110,6 +119,7 @@
               Print '</div>';
               $done_count = $done_count + 1;
             }
+            //need a ajax function to show done events without refreshing the page
             ?>
           </div>
 
@@ -146,12 +156,14 @@
            } 
          });
             jQuery('#event_info').val('');
-            jQuery('.show_to_do_list').append(
+            jQuery('.to_do_list_events').append(
                 '<div class="event_list_from_db event_list_'+ class_number +'" id = "item_'+ class_number +'">' +
                 '<p class="event_num_'+ class_number +'" style="width: 50%; float: left;">' + event_information_str + '</p>' +
                 '<button type ="button" class="btn btn-info done_button">' + 
                 'Done' +
                 '</button>' +
+                '<div style="clear:both;">' + 
+                '</div>' +
                 '</div>'
               );
                 }
