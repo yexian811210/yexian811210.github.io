@@ -47,7 +47,7 @@ div.love_notes_img_wrapper img, div.hate_notes_img_wrapper img {
   float: left;
   margin-right: 2%;
   width: 200px;
-  height: 150px;
+  height: 150px !important;
 }
 .ma_love_notes h3, .ma_hate_notes h3 {
   text-align: left;
@@ -62,6 +62,24 @@ span.ma_add_notes_button a {
   color: white;
   padding: 10px 15px 10px 15px !important;
   transition: background-color .25s ease-in-out;
+}
+div.ma_dialog_input_group {
+  width: 80%;
+  margin: auto;
+}
+div.ma_dialog_input_group span.call-to-action-button a {
+  border: 0 !important;
+  background-color: #FF2800 !important;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 20px 8px 20px;
+  transition: background-color .25s ease-in-out;
+  text-decoration: none;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+#ma_dialog_tags {
+  min-height: 27px;
 }
 </style>
 [scent_logged_in value=true]
@@ -83,7 +101,7 @@ span.ma_add_notes_button a {
   <div class="sp_content_new" id="scent_profile" style="display: block !important;">
 
     <div id ="dialog-confirm" title="add notes">
-      <div class="ma_dialog_input-group"><input type="text" class="form-control" id="ma_dialog_tags" placeholder="Notes you like/dislike..."><span class="call-to-action-button" id="ma_search_submit"><a href="#" style="background-color: #06799f !important;">Search</a></span></div>
+      <div class="ma_dialog_input_group"><input type="text" class="form-control" id="ma_dialog_tags" placeholder="Notes you like/dislike..."><span class="call-to-action-button" id="ma_search_submit"><a href="#" style="background-color: #06799f !important;">Search</a></span></div>
       <div class="ma_show_input_note"></div>
     </div>
 

@@ -53,6 +53,7 @@ function addNotes() {
       jQuery( '.'+parent_class_name+' .ma_add_notes_button' ).before(
         '<img src="'+image_url+'">'
         );
+      used_notes_array.push( input_note_name );  
       jQuery( this ).dialog( "close" );
     }
 };
