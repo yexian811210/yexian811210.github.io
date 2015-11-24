@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<style type="text/css">
+.ui-autocomplete {
+max-height: 150px;
+overflow-y: auto;
+/* prevent horizontal scrollbar */
+overflow-x: hidden;
+}
+.my_account_rewards_bar {
+  width: 60%;
+  margin: auto;
+}
+.my_account_rewards_bar h3 {
+  text-align: center;
+}
+.sw_sidebar_new ul {
+  width: 50%;
+  margin: auto;
+}
+.sw_sidebar_new li {
+  font-size: 18px;
+  float: left;
+  padding: 10px !important;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+}
+div.sw_sidebar_new ul li:hover {
+  font-size: 21px !important;
+  color: #333333;
+  transition: all .25s ease-out;
+}
+div.sp_content_new {
+  width: 65%;
+  margin: auto;
+}
+.sp_content_new h1, .sp_content_new h2, .sp_content_new h3, .sp_content_new h4, .sp_content_new h5 {
+  text-align: center;
+}
+#rate_scents, #my_subscription, #refer_friends {
+  display: none;
+}
+div.love_notes_img_wrapper img, div.hate_notes_img_wrapper img {
+  float: left;
+  margin-right: 2%;
+}
+.ma_love_notes h3, .ma_hate_notes h3 {
+  text-align: left;
+}
+span.ma_add_notes_button {
+  float: left;
+}
+span.ma_add_notes_button a {
+  border: 0 !important;
+  background-color: #ff2800 !important;
+  border-radius: 30px !important;
+  color: white;
+  padding: 10px 15px 10px 15px !important;
+  transition: background-color .25s ease-in-out;
+}
+</style>
+[scent_logged_in value=true]
+<div class="sw_container_new">
+  <div class="my_account_rewards_bar">
+    <h3>Hello [scent_user_name], you have [achievement_points] points</h3>[scent_progress_bar]
+  </div>
+  <div class="sw_sidebar_new">
+    <ul>
+      <li id="scent_profile_li">MY PROFILE</li>
+      <li id="rate_scents_li">MY RATINGS</li>
+      <li id="my_subscription_li">MY ORDER</li>
+      <li id="refer_friends_li">REFER A FRIEND</li>
+      <div style="clear: both;"></div>
+    </ul>
+  </div>
+  <div class="clear_float"></div>
+   
+  <div class="sp_content_new" id="scent_profile" style="display: block !important;">
+
+    <div id ="dialog-confirm" title="add notes">
+      <div class="ma_dialog_input-group"><input type="text" class="form-control" id="ma_dialog_tags" placeholder="Notes you like/dislike..."><span class="call-to-action-button" id="ma_search_submit"><a href="#" style="background-color: #06799f !important;">Search</a></span></div>
+    </div>
+
+     <div class="ma_love_notes" style="margin-bottom: 20px;">
+        <h3>My Favorite Notes:</h3>
+        <div class="love_notes_img_wrapper" style="float: left; width: 100%;">
+         <img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><span class="ma_add_notes_button" id ="call-to-action-button"><a href="#" style="border-radius: 30px !important;padding: 10px 15px 10px 15px !important;color: white;">+</a></span>
+        </div>
+<div style="clear: both;"></div>
+     </div>
+     <div class="ma_hate_notes">
+       <h3>Notes I can't Stand:</h3>
+        <div class="hate_notes_img_wrapper" style="float: left; width: 100%;">
+         <img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><img src="https://scenttrunk.com/wp-content/uploads/2015/10/nutty.jpeg"><span class="ma_add_notes_button" id ="call-to-action-button"><a href="#" style="border-radius: 30px !important;padding: 10px 15px 10px 15px !important; color: white;">+</a></span>
+        </div>
+<div style="clear: both;"></div>
+     </div>
+  </div>
+
+  <div class="sp_content_new" id="rate_scents">
+     <h3>Your ratings help us learn more about the notes you like.</h3>
+  </div>
+  <div class="sp_content_new" id="my_subscription">
+     [woocommerce_my_account]
+  </div>
+  <div class="sp_content_new" id="refer_friends">
+     <div class="landing_top_half">
+    <h2 class="landing_top_half_text_one">INVITE FRIENDS, #fightdepression,<br>EARN PRODUCT.</h2>
+    <h4 class="landing_top_half_text_two">1.5% of our sales go to #fightdepression. <a href="https://scenttrunk.com/fight-depression/">Learn more.</a></h4>
+    <h4>Share your unique referral link.</h4>
+    <h4>Get <span class="my_account_red_span">50</span> points towards rewards, and<br>Give <span class="my_account_red_span">$7.00</span> of gift credit to your friends.</h4>
+
+    <h4 class="referral_link">https://scenttrunk.com?refer=[scent_user_id]</h4>
+    <div class="lb_social_share">
+      <div class="share_buttons">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://scenttrunk.com/?refer=[scent_user_id]"><img class="facebook_share_icon" src="https://scenttrunk.com/wp-content/uploads/2015/08/Facebook-icon.png"></a><a href="https://twitter.com/home?status=Excited about $7.00 of free credit for @ScentTrunk! Just create an account: https://scenttrunk.com/?refer=[scent_user_id]"><img class="twitter_share_icon" src="https://scenttrunk.com/wp-content/uploads/2015/08/Bookmark-Icons-Twitter.png"></a>
+        <div class="send_email_field"><h4>Type the emails of the friends you'd like to invite, separated by a comma</h4><form id="refer_form" class="ma_form_style"action="javascript:stSendEmail();">
+<input type="text" name="email" id="email" placeholder="your@friend.com" style="margin-bottom:30px;"><button id="submit">Send</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://scenttrunk.com/wp-content/plugins/scenttrunk_inventory/scripts/sp_lite_profile.js"></script>
