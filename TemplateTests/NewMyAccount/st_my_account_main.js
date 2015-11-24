@@ -1,6 +1,8 @@
 var available_notes = [],
     notes_names = undefined,
-    image_url = '';
+    image_url = '',
+    input_note_name = '',
+    used_notes_array = [];
 
 jQuery.getJSON( 'https://scenttrunk.com/wp-content/plugins/scenttrunk_inventory/scripts/scent_list.json', function( data ) {
   notes_names = data;
@@ -30,14 +32,33 @@ var getPhotoUrl = function( k ) {
   }
 };
 
+jQuery( '#ma_search_submit' ).click( function(){
+      input_note_name = document.getElementById( 'ma_dialog_tags' ).value;
+      if ( ( input_note_name != '' ) &&
+      ( jQuery.inArray( input_note_name, available_notes ) != -1 ) &&
+      ( jQuery.inArray( input_note_name, used_notes_array ) == -1 ) ) {
+
+        getPhotoUrl( input_note_name );
+        jQuery( '.ma_show_input_note' ).append(
+          '<div class="ma_search_result">' +
+          '<img src="'+image_url+'">' +
+          '</div>'
+          );
+      }
+});
+
 function addNotes() {
-      jQuery( this ).dialog( "close" );//close dialog
+      jQuery( this ).dialog( "close" );
 };
 var dialog_window = jQuery( "#dialog-confirm" ).dialog({
       draggable: false,
       resizable: false,
-      height: 140,
+      minHeight: 140,
       modal: true,
+      close: function (event, ui) {
+            jQuery( this ).find('input').val('');
+            jQuery( this ).find('.ma_search_result').remove();
+        },
       buttons: {
         "Add": addNotes,
         Cancel: function() {
