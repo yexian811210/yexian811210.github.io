@@ -114,7 +114,7 @@
             $query = mysql_query("SELECT * FROM list WHERE user_id = '$user_id' AND completed = '1'");
             $done_count = 0;
             while($row = mysql_fetch_array($query)) {
-              Print '<div class="done_list_from_db done_list_'. $done_count .'" id = "done_item_'. $count .'">';
+              Print '<div class="done_list_from_db done_list_'. $done_count .'" id = "done_item_'. $done_count .'">';
               Print '<p class="done_num_'. $done_count .'" style="width: 100%; float: left; text-decoration: line-through;">' . $row['user_event'] . '</p>';
               Print '</div>';
               $done_count = $done_count + 1;
@@ -172,12 +172,25 @@
         jQuery( document ).on( 'click', '.done_button', function() {
             var done_class_id = jQuery( this ).parent().attr( 'id' );
             var done_event_information = jQuery('#'+done_class_id+' p').text();
+            var done_list_last_id = jQuery( '.done_list_from_db' ).last().attr( 'id' );
+            var done_list_id_number = done_list_last_id.slice( 10,done_list_last_id.length );
+            done_list_id_number = parseInt(done_list_id_number);
+            done_list_id_number = done_list_id_number + 1;//get right id number
+
+            jQuery('.show_done_list').append(
+              '<div class="done_list_from_db done_list_' +done_list_id_number+ '" id = "done_item_'+done_list_id_number+'">' +
+              '<p class="done_num_'+done_list_id_number+'" style="width: 100%; float: left; text-decoration: line-through;">' +
+              done_event_information +
+              '</p>' +
+              '<div>'
+              );//when done button is clicked, the event information will show in the done list immediately 
+
             jQuery.ajax({
               type: 'POST',
               url: 'done_event_handler.php',
               data: {event_name: done_event_information}
             });
-            jQuery('#'+done_class_id+'').remove();
+            jQuery('#'+done_class_id+'').remove(); 
           });
 
         jQuery('#done_div_trigger').click(function() {
@@ -188,6 +201,7 @@
               jQuery('.show_done_list').hide();
               jQuery('.show_to_do_list').show();
         });
+
         </script>
 
         <script src="js/bootstrap.js"></script>
