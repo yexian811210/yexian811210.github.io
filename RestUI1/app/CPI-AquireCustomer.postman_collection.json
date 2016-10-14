@@ -1,0 +1,65 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CPI-AquireCustomer",
+		"_postman_id": "90fd1e27-e866-4874-62df-b90f72e1b60c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[CPI] Create Party BI",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"interactionType\": \"Request\",\n\t\"biSpecificationRef\": \"/cpi/schemas/AcquireIndividualPartyBI-1.0.0.spec\",\n\t\"biItems\": [{\n\t\t\"description\": \"Optional description\",\n\t\t\"biItemSpecificationRef\": \"/cpi/schemas/PartyBIItem-1.0.0.spec\",\n\t\t\"action\": \"Add\",\n\t\t\"involvedEntity\": {\n\t\t\t\"entitySpecificationRef\": \"/cpi/schemas/Party.json\",\n\t\t\t\"entity\": {\n\t\t\t\t\"partySpecificationRef\": \"Party.json\",\n\t\t\t\t\"type\": \"individual\",\n\t\t\t\t\"aliveDuring\": {\n\t\t\t\t\t\"birthDate\": \"1982-02-28T02:19:00.000+03:00\"\n\t\t\t\t},\n\t\t\t\t\"countryOfBirth\": \"SE\",\n\t\t\t\t\"maritalStatus\": [{\n\t\t\t\t\t\"maritalStatus\": \"Married\"\n\t\t\t\t}],\n\t\t\t\t\"gender\": \"Male\",\n\t\t\t\t\"nationality\": \"France\",\n\t\t\t\t\"languages\": [\"EN\"],\n\t\t\t\t\"partyNames\": [{\n\t\t\t\t\t\"givenName\": \"Klaus Richard\",\n\t\t\t\t\t\"familyNamePrefix\": \"von\",\n\t\t\t\t\t\"familyName\": \"Ruebezahl\",\n\t\t\t\t\t\"preferredGivenName\": \"Klaus\",\n\t\t\t\t\t\"middleName\": \"\",\n\t\t\t\t\t\"aristocraticTitle\": \"Baron\",\n\t\t\t\t\t\"formattedName\": \"Mr Dr. Ruebezahl\",\n\t\t\t\t\t\"qualification\": \"Dr. engineer\",\n\t\t\t\t\t\"formOfAddress\": \"Mr\",\n\t\t\t\t\t\"language\": \"EN\"\n\t\t\t\t}],\n\t\t\t\t\"partyIdentifications\": [{\n\t\t\t\t\t\"idNumber\": \"76452348\",\n\t\t\t\t\t\"issuingDate\": \"2015-06-24T12:36:02.556+02:00\",\n\t\t\t\t\t\"commonName\": \"Passport\",\n\t\t\t\t\t\"description\": \"The identification document ...\",\n\t\t\t\t\t\"idType\": \"Passport\",\n\t\t\t\t\t\"issuingCountry\": \"US\"\n\t\t\t\t}],\n\t\t\t\t\"contactMedia\": [{\n\t\t\t\t\t\"commonName\": \"phoneNumber\",\n\t\t\t\t\t\"description\": \"The contact medium telephoneNumber\",\n\t\t\t\t\t\"contactMediumSpecificationRef\": \"7F671DB55DE84AE6B53F417BC76787D8\",\n\t\t\t\t\t\"characteristics\" : [{\n                            \"name\" : \"telephoneAddress\",\n                            \"value\" : \"+0123456789\"\n                        }\n                    ]\n\t\t\t\t}]\n\t\t\t}\n\t\t}\n\t}]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Customer BI",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"interactionType\": \"Request\",\r\n    \"biSpecificationRef\": \"/cpi/schemas/AcquireCustomerBI-1.0.0.spec\",\r\n        \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"customer\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/41FD2238324C40D799B41795C20FF274\"\r\n        }\r\n    ],\r\n    \"biItems\": [\r\n        {\r\n            \"description\": \"Optional description\",\r\n            \"biItemSpecificationRef\": \"/cpi/schemas/CustomerBIItem-1.0.0.spec\",\r\n            \"action\": \"Add\",\r\n            \"involvedEntity\": {\r\n                \"entitySpecificationRef\": \"/cpi/schemas/Customer.json\",\r\n                \"entity\": {\r\n                    \"customerSpecificationRef\": \"Customer.json\",\r\n                    \"contactMediumAssociations\": [],\r\n                    \"relatedParty\": \"/cpi/holistview/v1/party/41FD2238324C40D799B41795C20FF274\",\r\n                    \"customerCreditProfiles\": [\r\n                        {\r\n                            \"creditProfileDate\": \"1982-02-28T02:19:00.000+03:00\",\r\n                            \"creditScore\": \"10000\",\r\n                            \"creditRiskRating\": \"20000\"\r\n                        }\r\n                    ],\r\n                \"validFor\" : {\r\n                    \t\"start\" : \"2016-09-20T16:56:18.775+02:00\"\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] Read Customer",
+			"request": {
+				"url": "http://localhost:13080/cpm/business/v1/readCustomer/customer/1F06D6EA25F542248F695C5FCA0E99F5",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

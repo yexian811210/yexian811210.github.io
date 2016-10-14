@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="restApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>restUI</title>
+        <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-controller="restController">
+
+    <div class="container">
+        <div class="row row-content">
+            <div class="col-xs-6">
+          <div class="form-group row">
+      <label for="file-name" class="col-xs-2 col-form-label">Request Content</label>
+      <div class="col-xs-10">
+      <input class="form-control" type="text" ng-model="request" id="file-name">
+      </div>
+     </div>
+                <h2>Request</h2>
+        <form>
+    <div class="form-group row">
+     <label for="name-input" class="col-xs-2 col-form-label">Name</label>
+     <div class="col-xs-10">
+     <input class="form-control" type="text" value="{{request.item[0].request.body.raw}}" id="name-input">
+     </div>
+    </div>
+    <div class="form-group row">
+     <label for="url-input" class="col-xs-2 col-form-label">URL</label>
+     <div class="col-xs-10">
+     <input class="form-control" type="url" value="{{tests.request.url}}" id="url-input">
+     </div>
+    </div>
+    <div class="form-group row">
+      <label for="method-sel" class="col-xs-2 col-form-label">Method</label>
+      <div class="col-xs-10">
+      <input class="form-control" type="url" value="{{tests.request.method}}" id="method-sel">
+      </div>
+     </div>
+    <h3>Header</h3>
+     <div class="form-group row">
+      <label for="key-sel" class="col-xs-2 col-form-label col-xs-offset-1">Key</label>
+      <div class="col-xs-8">
+       <input class="form-control" type="text" value="{{tests.request.header[0].key}}" id="key-sel">
+      </div>
+     </div>
+     <div class="form-group row">
+      <label for="val-sel" class="col-xs-2 col-form-label col-xs-offset-1">Value</label>
+      <div class="col-xs-8">
+      <input class="form-control" type="text" value="{{tests.request.header[0].value}}" id="val-sel">
+      </div>
+     </div>
+       <h3>Body</h3>
+      <div class="form-group row">
+      <label for="mode-sel" class="col-xs-4 col-form-label col-xs-offset-0">Mode</label>
+      <div class="col-xs-8">
+      <input class="form-control" type="text"  value="{{tests.request.body.mode}}" id="mode-sel">
+      </div>
+     </div>
+       <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">biSpecificationRef</label>
+      <div class="col-xs-8">
+      <textarea rows="2" cols="37.5"></textarea>
+      </div>
+     </div>
+            <h3>biItems</h3>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">biItem
+          SpecificationRef</label>
+      <div class="col-xs-8">
+      <textarea rows="2" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">action</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <h3>involvedEntity</h3>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">entitySpecificationRef</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <h3>entity</h3>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">partySpecificationRef</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">type</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">birthDate</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">countryOfBirth</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">martialStatus</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">gender</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">nationality</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">languages</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <h3>partyNames</h3>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">givenName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">familyNamePrefix</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">familyName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">preferredGivenName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">middleName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">aristocraticTitle</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">formattedName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">qualification</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">formOfAddress</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">language</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+            <h3>partyIdentifications</h3>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">idNumber</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">issuingDate</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">commonName</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">description</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">idType</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+      <label class="col-xs-4 col-form-label col-xs-offset-0">issuingCountry</label>
+      <div class="col-xs-8">
+      <textarea rows="1" cols="37.5"></textarea>
+      </div>
+     </div>
+             <div class="form-group row">
+          <button type="button" style="float:right" class="btn btn-primary btn-lg">Send</button>      
+            </div>
+            </form>
+            </div>
+            <div class="col-xs-6">
+               <h2 style="padding: 40px 0px 10px 0px">Response</h2>
+                <table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>Status</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Time</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td></td>
+    </tr>
+  </tbody>                    
+</table>
+     <form>
+     <div class="form-group row">
+     <label class="col-xs-2 col-form-label">Field1</label>
+     <div class="col-xs-10">
+     <input class="form-control" type="text" value="">
+     </div>
+    </div>
+         <div class="form-group row">
+     <label class="col-xs-2 col-form-label">Field2</label>
+     <div class="col-xs-10">
+     <input class="form-control" type="text" value="">
+     </div>
+    </div>
+         <div class="form-group row">
+     <label class="col-xs-2 col-form-label">Field3</label>
+     <div class="col-xs-10">
+     <input class="form-control" type="text" value="">
+     </div>
+    </div>
+    </form>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script src="../bower_components/angular/angular.min.js"></script>
+     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+   
+      <script src='https://rawgit.com/ghostbar/angular-file-model/master/angular-file-model.js'></script>
+<script>
+    // Automatically size all of your <textarea> elements as you type
+    autosize(document.querySelectorAll('textarea'));
+</script>
+    <script>
+        
+        var app = angular.module('restApp', []);     
+        app.controller('restController', function($scope, $http) {
+            $http.get('CPI-ManageIndividualPartyContactMedium.postman_collection.json').success(function(data) {
+          $scope.request = data;
+        });
+        $scope.index = 0;
+        
+        $scope.Obj = angular.fromJson($scope.request.item[0]);
+       
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CPI-ManageIndividualPartyContactMedium",
+		"_postman_id": "639e1ba3-ff13-39ac-7243-544d247f10cf",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[CPI] AcquirePartyBI",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"interactionType\": \"Request\",\n\t\"biSpecificationRef\": \"/cpi/schemas/AcquireIndividualPartyBI-1.0.0.spec\",\n\t\"biItems\": [{\n\t\t\"description\": \"Optional description\",\n\t\t\"biItemSpecificationRef\": \"/cpi/schemas/PartyBIItem-1.0.0.spec\",\n\t\t\"action\": \"Add\",\n\t\t\"involvedEntity\": {\n\t\t\t\"entitySpecificationRef\": \"/cpi/schemas/Party.json\",\n\t\t\t\"entity\": {\n\t\t\t\t\"partySpecificationRef\": \"Party.json\",\n\t\t\t\t\"type\": \"individual\",\n\t\t\t\t\"aliveDuring\": {\n\t\t\t\t\t\"birthDate\": \"1982-02-28T02:19:00.000+03:00\"\n\t\t\t\t},\n\t\t\t\t\"countryOfBirth\": \"SE\",\n\t\t\t\t\"maritalStatus\": [{\n\t\t\t\t\t\"maritalStatus\": \"Married\"\n\t\t\t\t}],\n\t\t\t\t\"gender\": \"Male\",\n\t\t\t\t\"nationality\": \"France\",\n\t\t\t\t\"languages\": [\"EN\"],\n\t\t\t\t\"partyNames\": [{\n\t\t\t\t\t\"givenName\": \"Klaus Richard\",\n\t\t\t\t\t\"familyNamePrefix\": \"von\",\n\t\t\t\t\t\"familyName\": \"Ruebezahl\",\n\t\t\t\t\t\"preferredGivenName\": \"Klaus\",\n\t\t\t\t\t\"middleName\": \"\",\n\t\t\t\t\t\"aristocraticTitle\": \"Baron\",\n\t\t\t\t\t\"formattedName\": \"Mr Dr. Ruebezahl\",\n\t\t\t\t\t\"qualification\": \"Dr. engineer\",\n\t\t\t\t\t\"formOfAddress\": \"Mr\",\n\t\t\t\t\t\"language\": \"EN\"\n\t\t\t\t}],\n\t\t\t\t\"partyIdentifications\": [{\n\t\t\t\t\t\"idNumber\": \"76452348\",\n\t\t\t\t\t\"issuingDate\": \"2015-06-24T12:36:02.556+02:00\",\n\t\t\t\t\t\"commonName\": \"Passport\",\n\t\t\t\t\t\"description\": \"The identification document ...\",\n\t\t\t\t\t\"idType\": \"Passport\",\n\t\t\t\t\t\"issuingCountry\": \"US\"\n\t\t\t\t}],\n\t\t\t\t\"contactMedia\": []\n\t\t\t}\n\t\t}\n\t}]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Contact Medium - Phone Number",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Add\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                    \"contactMediumSpecificationRef\" : \"A4E296BFF6B1460192BA49B36721C108\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"PHONE_NUMBER\",\r\n                            \"value\" : \"+12312312313\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"MobilePhone\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Contact Medium - Email Address",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Add\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                    \"contactMediumSpecificationRef\" : \"3A09E753CC6B4FFC88620F2D5F6AD9FF\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"EMAILADDRESS\",\r\n                            \"value\" : \"xyz@ericsson.com\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Email Address\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Contact Medium - Fax Number",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Add\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                    \"contactMediumSpecificationRef\" : \"84E82D775BD94B368809AFE87A0C078C\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"FAX_NUMBER\",\r\n                            \"value\" : \"+12313413123\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Fax Number\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Contact Medium - Postal Contact",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Add\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                    \"contactMediumSpecificationRef\" : \"36E46A20F4D0427CB6FDF524C9F72F7D\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"STREET\",\r\n                            \"value\" : \"1234 Street Name\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"CITY\",\r\n                            \"value\" : \"Mississauga\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"COUNTRY\",\r\n                            \"value\" : \"Canada\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"POSTALCODE\",\r\n                            \"value\" : \"L5B 3Y8\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Mailing Address\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Update Contact Medium - Phone Number",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Update\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                \t\"id\":\"F0E8BA119DDE4B1FB1AD9F90BD5C1F37\",\r\n                    \"contactMediumSpecificationRef\" : \"F6E65391ADA243AD9F50C37B0BD10F53\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"PHONE_NUMBER\",\r\n                            \"value\" : \"+91919191\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"MobilePhone\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Update Contact Medium - Email Address",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Update\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                \t\"id\":\"72938DFD3DF440B9A1E6DD276E136388\",\r\n                    \"contactMediumSpecificationRef\" : \"DB0F193D887D4158B8800B2AFA112C93\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"EMAILADDRESS\",\r\n                            \"value\" : \"xyz@ericsson.com\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Email Address\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Update Contact Medium - Fax Number",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Update\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                \t\"id\":\"F3ECAF1B157E426299F08C67CC72FE64\",\r\n                    \"contactMediumSpecificationRef\" : \"84E82D775BD94B368809AFE87A0C078C\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"FAX_NUMBER\",\r\n                            \"value\" : \"+99999999\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Fax Number\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPI] Create Contact Medium - Postal Contact copy",
+			"request": {
+				"url": "http://localhost:3980/cpi/orchestration/v1/bi/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"Optional desciption\",\r\n    \"interactionType\" : \"Request\",\r\n    \"biSpecificationRef\" : \"/cpi/schemas/ManageIndividualPartyContactMediumBI-1.0.0.spec\",\r\n    \"relatedPartyInteractionRoles\" : [\r\n        {\r\n            \"role\" : \"role\",\r\n            \"entitySpecificationRef\" : \"/cpi/schemas/Party.json\",\r\n            \"entityRef\" : \"/cpi/holisticView/v1/party/7F3D212E0150448A9EC60624A49687D0\"\r\n        }\r\n    ],\r\n    \"biItems\" : [\r\n        {\r\n            \"biItemSpecificationRef\" : \"/cpi/schemas/ContactMediumBIItem-1.0.0.spec\",\r\n            \"action\" : \"Add\",\r\n            \"involvedEntity\" : {\r\n                \"entitySpecificationRef\" : \"/cpi/schemas/ContactMedium.json\",\r\n                \"entity\" : {\r\n                    \"contactMediumSpecificationRef\" : \"36E46A20F4D0427CB6FDF524C9F72F7D\",\r\n                    \"characteristics\" : [{\r\n                            \"name\" : \"STREET\",\r\n                            \"value\" : \"1234 Street Name\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"CITY\",\r\n                            \"value\" : \"Mississauga\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"COUNTRY\",\r\n                            \"value\" : \"Canada\"\r\n                        },\r\n                        {\r\n                            \"name\" : \"POSTALCODE\",\r\n                            \"value\" : \"L5B 3Y8\"\r\n                        }\r\n                    ],\r\n                    \"commonName\" : \"Mailing Address\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] Read Party",
+			"request": {
+				"url": "http://localhost:13080/cpm/business/v1/readParty/party/7F3D212E0150448A9EC60624A49687D0",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] CM Specification EmailAddress",
+			"request": {
+				"url": "http://localhost:13080/cpm/specificationManagement/v1/contactMediumSpecification",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"resource\": {\r\n          \"name\": \"Email Address\",\r\n          \"description\": \"Email Address\",\r\n          \"contactMediumType\": {\r\n               \"contactMediumTypeId\": \"Email\"\r\n          },\r\n          \"versions\": [{\r\n               \"state\": \"ACTIVE\",\r\n               \"characteristics\": [{\r\n                    \"name\": \"EMAILADDRESS\",\r\n                    \"purpose\" : \"EMAILADDRESS\",\r\n                    \"valueType\": \"string\",\r\n                    \"minCardinality\": 1,\r\n                    \"maxCardinality\": 1,\r\n                    \"canBeOverridden\": true,\r\n                    \"valueRegulator\": \"mustBePersonalized\",\r\n                    \"possibleValues\": [{\r\n                         \"valueFrom\": \"1\",\r\n                         \"valueTo\": \"60\"\r\n                    }]\r\n               }]\r\n          }]\r\n     }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] CM Specification Telephone",
+			"request": {
+				"url": "http://localhost:13080/cpm/specificationManagement/v1/contactMediumSpecification",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"resource\": {\r\n          \"name\": \"Phone Number\",\r\n          \"description\": \"Phone Number\",\r\n          \"contactMediumType\": {\r\n               \"contactMediumTypeId\": \"Telephone\"\r\n          },\r\n          \"versions\": [{\r\n               \"state\": \"ACTIVE\",\r\n               \"characteristics\": [{\r\n                    \"name\": \"PHONE_NUMBER\",\r\n                    \"purpose\" : \"PHONE_NUMBER\",\r\n                    \"valueType\": \"string\",\r\n                    \"minCardinality\": 1,\r\n                    \"maxCardinality\": 1,\r\n                    \"canBeOverridden\": true,\r\n                    \"valueRegulator\": \"mustBePersonalized\",\r\n                    \"possibleValues\": [{\r\n                         \"valueFrom\": \"1\",\r\n                         \"valueTo\": \"60\"\r\n                    }]\r\n               }]\r\n          }]\r\n     }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] CM Specification Fax",
+			"request": {
+				"url": "http://localhost:13080/cpm/specificationManagement/v1/contactMediumSpecification",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"resource\": {\r\n          \"name\": \"Fax Number\",\r\n          \"description\": \"Fax Number\",\r\n          \"contactMediumType\": {\r\n               \"contactMediumTypeId\": \"Fax\"\r\n          },\r\n          \"versions\": [{\r\n               \"state\": \"ACTIVE\",\r\n               \"characteristics\": [{\r\n                    \"name\": \"FAX_NUMBER\",\r\n                    \"purpose\" : \"FAX_NUMBER\",\r\n                    \"valueType\": \"string\",\r\n                    \"minCardinality\": 1,\r\n                    \"maxCardinality\": 1,\r\n                    \"canBeOverridden\": true,\r\n                    \"valueRegulator\": \"mustBePersonalized\",\r\n                    \"possibleValues\": [{\r\n                         \"valueFrom\": \"1\",\r\n                         \"valueTo\": \"60\"\r\n                    }]\r\n               }]\r\n          }]\r\n     }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[CPM] CM Specification PostalContact",
+			"request": {
+				"url": "http://localhost:13080/cpm/specificationManagement/v1/contactMediumSpecification",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"resource\": {\n\t\t\"name\": \"Postal Contact\",\n\t\t\"description\": \"Postal Contact\",\n\t\t\"contactMediumType\": {\n\t\t\t\"contactMediumTypeId\": \"PostalContact\"\n\t\t},\n\t\t\"versions\": [{\n\t\t\t\"state\": \"ACTIVE\",\n\t\t\t\"characteristics\": [{\n\t\t\t\t\"name\": \"STREET\",\n\t\t\t\t\"purpose\": \"STREET\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"POSTALCODE\",\n\t\t\t\t\"purpose\": \"POSTALCODE\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"POBOX\",\n\t\t\t\t\"purpose\": \"POBOX\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"CO_ADDRESS\",\n\t\t\t\t\"purpose\": \"CO_ADDRESS\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"CITY\",\n\t\t\t\t\"purpose\": \"CITY\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"COUNTRY\",\n\t\t\t\t\"purpose\": \"COUNTRY\",\n\t\t\t\t\"valueType\": \"string\",\n\t\t\t\t\"minCardinality\": 1,\n\t\t\t\t\"maxCardinality\": 1,\n\t\t\t\t\"canBeOverridden\": true,\n\t\t\t\t\"valueRegulator\": \"mustBePersonalized\",\n\t\t\t\t\"possibleValues\": [{\n\t\t\t\t\t\"valueFrom\": \"1\",\n\t\t\t\t\t\"valueTo\": \"60\"\n\t\t\t\t}]\n\t\t\t}]\n\t\t}]\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
